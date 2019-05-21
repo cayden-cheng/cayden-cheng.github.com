@@ -9,20 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>微服务之间互相调用，怎么防止雪崩效应 | chengliang的个人博客</title>
+  <title>私人博客如何引入来比力评论系统 | chengliang的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="微服务之间互相调用的雪崩效应 在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉">
-<meta name="keywords" content="熔断器,springcloud">
+  <meta name="description" content="#搭建博客引入外部评论 提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。">
+<meta name="keywords" content="博客,来必力,评论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微服务之间互相调用，怎么防止雪崩效应">
-<meta property="og:url" content="http://yoursite.com/2019/05/20/微服务之间互相调用，怎么防止雪崩效应/index.html">
+<meta property="og:title" content="私人博客如何引入来比力评论系统">
+<meta property="og:url" content="http://yoursite.com/2019/05/21/私人博客如何引入来比力评论系统/index.html">
 <meta property="og:site_name" content="chengliang的个人博客">
-<meta property="og:description" content="微服务之间互相调用的雪崩效应 在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉">
+<meta property="og:description" content="#搭建博客引入外部评论 提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-20T03:13:08.035Z">
+<meta property="og:updated_time" content="2019-05-21T08:34:44.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微服务之间互相调用，怎么防止雪崩效应">
-<meta name="twitter:description" content="微服务之间互相调用的雪崩效应 在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉">
+<meta name="twitter:title" content="私人博客如何引入来比力评论系统">
+<meta name="twitter:description" content="#搭建博客引入外部评论 提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。">
   
     <link rel="alternative" href="/atom.xml" title="chengliang的个人博客" type="application/atom+xml">
   
@@ -161,30 +161,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-微服务之间互相调用，怎么防止雪崩效应" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-私人博客如何引入来比力评论系统" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      微服务之间互相调用，怎么防止雪崩效应
+      私人博客如何引入来比力评论系统
     </h1>
   
 
         
-        <a href="/2019/05/20/微服务之间互相调用，怎么防止雪崩效应/" class="archive-article-date">
-  	<time datetime="2019-05-20T01:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-20</time>
+        <a href="/2019/05/21/私人博客如何引入来比力评论系统/" class="archive-article-date">
+  	<time datetime="2019-05-21T01:09:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="微服务之间互相调用的雪崩效应"><a href="#微服务之间互相调用的雪崩效应" class="headerlink" title="微服务之间互相调用的雪崩效应"></a>微服务之间互相调用的雪崩效应</h1><hr>
-<h2 id="在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉"><a href="#在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉" class="headerlink" title="在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉"></a>在我们搭建一个比较大型的分布式项目的时候，我们总会进行微服务之间的互相调用，如果特别壮大的还会多个微服务之间的互相调用，如果其中一个微服务挂掉了，那么就会导致雪崩效应，导致整个项目都被挂掉</h2><a id="more"></a>
-<p><strong>既然如此，那么我们可以用什么来解决雪崩效应呢</strong><br>解决思路：使用熔断器，它能够在访问不到微服务之后自动走另外我们设定好的路线。<br>这里因为我项目采用的是springcloud，所以我就使用Feign自带的熔断器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.tensquare.qa.client;</span><br><span class="line"></span><br><span class="line">import com.tensquare.qa.impl.BaseClientImpl;</span><br><span class="line">import entity.Result;</span><br><span class="line">import org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line">import org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Author: chengliang</span><br><span class="line"> * @Date: 2019/4/30 11:20</span><br><span class="line"> * @Version 1.0</span><br><span class="line"> */</span><br><span class="line">@FeignClient(value = &quot;tensquare-base&quot;,fallback = BaseClientImpl.class)</span><br><span class="line">public interface BaseClient &#123;</span><br><span class="line">    @RequestMapping(value = &quot;/label/&#123;lableId&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">    public Result findById(@PathVariable(&quot;lableId&quot;) String lableId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后实现这个接口就行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.tensquare.qa.impl;</span><br><span class="line"></span><br><span class="line">import com.tensquare.qa.client.BaseClient;</span><br><span class="line">import entity.Result;</span><br><span class="line">import entity.StatusCode;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Author: chengliang</span><br><span class="line"> * @Date: 2019/5/5 14:10</span><br><span class="line"> * @Version 1.0</span><br><span class="line"> */</span><br><span class="line">@Component</span><br><span class="line">public class BaseClientImpl implements BaseClient &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Result findById(String lableId) &#123;</span><br><span class="line">        return new Result(false,StatusCode.ERROR,&quot;熔断器触发&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>#搭建博客引入外部评论</p>
+<h3 id="提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。"><a href="#提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。" class="headerlink" title="提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。"></a>提要：当我们搭建好属于自己的博客时，我们很想让沟通性再强一些，原本我是准备自己写一个比较简单的评论系统，但是虽然想着简单，购买服务器等一系列操作还是让我萌生退意，这个时候我了解到可以外接评论系统，这里就不再赘述为什么会选择来必力了。</h3><a id="more"></a>
+<hr>
+<h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步:"></a>第一步:</h3><p>进入来必力官网（<a href="https://livere.com/），注册，并且选用免费的city版本" target="_blank" rel="noopener">https://livere.com/），注册，并且选用免费的city版本</a></p>
+<h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步:"></a>第二步:</h3><p>拿到来比力的代码，并且在D:\blog\themes\yilia\layout_partial\post下，建立livere.ejs，然后把你的代码复制粘贴上去。</p>
+<h3 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h3><p>修改D:\blog\themes\yilia\layout_partial下的article.ejs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(&apos;_partial/aside&apos;) %&gt;</span><br><span class="line">------&gt;下面这个放到上面这个代码的下面</span><br><span class="line">&lt;% if (!index &amp;&amp; post.comments)&#123; %&gt;</span><br><span class="line">&lt;% if (theme.livere)&#123; %&gt;</span><br><span class="line">  &lt;%- partial(&apos;post/livere&apos;, &#123;</span><br><span class="line">        key: post.slug,</span><br><span class="line">        title: post.title,</span><br><span class="line">        url: config.url+url_for(post.path)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>最后修改主题的_config.yml文件，<br><code>livere: 你从易必力申请的id</code></p>
 
       
 
@@ -198,11 +201,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">熔断器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">springcloud</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">来必力</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">评论</a>
         		</li>
       		
 		</ul>
@@ -258,7 +265,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/20/微服务之间互相调用，怎么防止雪崩效应/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/21/私人博客如何引入来比力评论系统/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -272,18 +279,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/21/私人博客如何引入来比力评论系统/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          私人博客如何引入来比力评论系统
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/18/如何解析购买的网站域名/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何解析购买的网站域名</div>
+    <a href="/2019/05/20/微服务之间互相调用，怎么防止雪崩效应/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微服务之间互相调用，怎么防止雪崩效应</div>
       <i class="icon-circle-right"></i>
     </a>
   
