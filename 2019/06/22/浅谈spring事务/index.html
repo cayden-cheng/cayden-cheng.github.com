@@ -9,19 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 博客 | chengliang的个人博客</title>
+  <title>浅谈spring事务 | chengliang的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="茫茫人海中一颗坚强的小石子">
-<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="chengliang的个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/博客/index.html">
+  <meta name="description" content="spring 事务的三种实现方式 ①声明式：使用SpringAop配置事务，这种方式大大的简化了编码。需要注意的是切入点表达式一定要写正确，切入点错误，无法准确拦截方法，会导致事务无法回滚。  ②注解式：在方法或类上直接使用@Transactional注解，非常简洁方便。  ③编程式：在代码中手工开启事务，手工提交，出现异常，手工回滚。优点是异常都会回滚捕获，不会出现无法回滚的情况，缺点是太麻烦。">
+<meta name="keywords" content="spring,事务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈spring事务">
+<meta property="og:url" content="http://yoursite.com/2019/06/22/浅谈spring事务/index.html">
 <meta property="og:site_name" content="chengliang的个人博客">
-<meta property="og:description" content="茫茫人海中一颗坚强的小石子">
+<meta property="og:description" content="spring 事务的三种实现方式 ①声明式：使用SpringAop配置事务，这种方式大大的简化了编码。需要注意的是切入点表达式一定要写正确，切入点错误，无法准确拦截方法，会导致事务无法回滚。  ②注解式：在方法或类上直接使用@Transactional注解，非常简洁方便。  ③编程式：在代码中手工开启事务，手工提交，出现异常，手工回滚。优点是异常都会回滚捕获，不会出现无法回滚的情况，缺点是太麻烦。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-22T15:35:22.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chengliang的个人博客">
-<meta name="twitter:description" content="茫茫人海中一颗坚强的小石子">
+<meta name="twitter:title" content="浅谈spring事务">
+<meta name="twitter:description" content="spring 事务的三种实现方式 ①声明式：使用SpringAop配置事务，这种方式大大的简化了编码。需要注意的是切入点表达式一定要写正确，切入点错误，无法准确拦截方法，会导致事务无法回滚。  ②注解式：在方法或类上直接使用@Transactional注解，非常简洁方便。  ③编程式：在代码中手工开启事务，手工提交，出现异常，手工回滚。优点是异常都会回滚捕获，不会出现无法回滚的情况，缺点是太麻烦。">
   
     <link rel="alternative" href="/atom.xml" title="chengliang的个人博客" type="application/atom+xml">
   
@@ -160,68 +161,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-浅谈spring事务" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/21/私人博客如何引入来比力评论系统/" class="archive-article-date">
-  	<time datetime="2019-05-21T01:09:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/21/私人博客如何引入来比力评论系统/">私人博客如何引入来比力评论系统</a>
+    <h1 class="article-title" itemprop="name">
+      浅谈spring事务
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/06/22/浅谈spring事务/" class="archive-article-date">
+  	<time datetime="2019-06-22T15:21:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="spring-事务的三种实现方式"><a href="#spring-事务的三种实现方式" class="headerlink" title="spring 事务的三种实现方式"></a>spring 事务的三种实现方式</h2><p> ①声明式：使用SpringAop配置事务，这种方式大大的简化了编码。需要注意的是切入点表达式一定要写正确，切入点错误，无法准确拦截方法，会导致事务无法回滚。</p>
+<p> ②注解式：在方法或类上直接使用@Transactional注解，非常简洁方便。</p>
+<p> ③编程式：在代码中手工开启事务，手工提交，出现异常，手工回滚。优点是异常都会回滚捕获，不会出现无法回滚的情况，缺点是太麻烦。</p>
+<a id="more"></a>
+<p>个人比较喜欢使用注解式的事务管理，但是自己写了代码之后发现就算同一个事务下的方法，有一个方法更新失败(多个方法都是更新方法)之后,数据库没有进行回滚操作，后来陆陆续续饰演了几次，并且查了一些资料才了解到，其实spring事务管理并不是更新失败就进行事务回滚，而是检测到异常之后才进行事务回滚，而spring事务默认拦截的是RuntimeException,如果是需要拦截更多的方法，则需要自定义@Transactional，在后面加上(rollbackFor = Exception.class)<br>或者(rollbackFor = Throwable.class)，但是这里面又有区别了，Exception仅仅是异常，而Throwable是Exception的父类，包括exception的同时还包括Error。</p>
+<h3 id="选择Throwable还是Exception呢？"><a href="#选择Throwable还是Exception呢？" class="headerlink" title="选择Throwable还是Exception呢？"></a>选择Throwable还是Exception呢？</h3><p> 个人建议是选择Throwable，因为Throwable不仅仅包括Exception，还包括Error，Exception仅仅指我们遇到的异常，是指程序可以处理的问题，而Error是指jvm遇到的错误，如果我们在执行数据库更新插入操作的时候，我们最后的更新遇到error，我们又没有进行事务回滚的时候，那么就可能会存在一些问题。所以我的选择依然是Throwable</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">来必力</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">评论</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/22/浅谈spring事务/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/06/17/linux下使用yum命令安装nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux下使用yum命令安装nginx</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NDI2NC8yMDc5Nw==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+  
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -244,9 +352,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
