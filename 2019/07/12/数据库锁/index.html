@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="锁,乐观锁,悲观锁,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="茫茫人海中一颗坚强的小石子">
-<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta name="description" content="锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。帮助理解：以商场的试衣间为例，每个试衣间都可供多个消费者使用，因此，可能出现多个消费者同时需要使用试衣间试衣服。为了避免冲突，试衣间装了锁，某一个试衣服的人在试衣间里把锁锁住了，其他顾客就不能从外面打开了，只能等待里面的顾客试完衣服，从里面把锁打开，">
+<meta name="keywords" content="锁,乐观锁,悲观锁">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库锁">
 <meta property="og:url" content="http://yoursite.com/2019/07/12/数据库锁/index.html">
 <meta property="og:site_name" content="chengliang的个人博客">
-<meta property="og:description" content="茫茫人海中一颗坚强的小石子">
+<meta property="og:description" content="锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。帮助理解：以商场的试衣间为例，每个试衣间都可供多个消费者使用，因此，可能出现多个消费者同时需要使用试衣间试衣服。为了避免冲突，试衣间装了锁，某一个试衣服的人在试衣间里把锁锁住了，其他顾客就不能从外面打开了，只能等待里面的顾客试完衣服，从里面把锁打开，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-12T06:59:59.957Z">
+<meta property="og:updated_time" content="2019-07-19T08:29:26.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库锁">
-<meta name="twitter:description" content="茫茫人海中一颗坚强的小石子">
+<meta name="twitter:description" content="锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。帮助理解：以商场的试衣间为例，每个试衣间都可供多个消费者使用，因此，可能出现多个消费者同时需要使用试衣间试衣服。为了避免冲突，试衣间装了锁，某一个试衣服的人在试衣间里把锁锁住了，其他顾客就不能从外面打开了，只能等待里面的顾客试完衣服，从里面把锁打开，">
 
 
 
@@ -302,7 +302,43 @@
       
 
       
-        
+        <h2 id="锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。"><a href="#锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。" class="headerlink" title="锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。"></a>锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。</h2><p><code>帮助理解：以商场的试衣间为例，每个试衣间都可供多个消费者使用，因此，可能出现多个消费者同时需要使用试衣间试衣服。为了避免冲突，试衣间装了锁，某一个试衣服的人在试衣间里把锁锁住了，其他顾客就不能从外面打开了，只能等待里面的顾客试完衣服，从里面把锁打开，外面的人才能进去。</code></p>
+<a id="more"></a>
+<h3 id="数据库锁出现的目的，或者说是想要解决什么问题？"><a href="#数据库锁出现的目的，或者说是想要解决什么问题？" class="headerlink" title="数据库锁出现的目的，或者说是想要解决什么问题？"></a>数据库锁出现的目的，或者说是想要解决什么问题？</h3><p> 答案就是:高并发<br> 在当今互联网发达的今天，每一个生活中我们使用的软件都会出现高并发问题，如果没有数据库锁，那么很有可能就会出现一些非常恐怖的问题。</p>
+<p> 比如：当我们在淘宝购买一件衣服的时候，我们同时五个人购买，如果货源只剩一件的情况，那么由谁来获得这件衣服的购买权呢？如果没有锁，有可能就会出现这种情况，显示还剩一件衣服，但是大家都一起下单，一起付款，就会出现脏数据，五个人都购买成功，这样是非常麻烦的事情。</p>
+<h2 id="并发控制的主要采用的技术手段：乐观锁、悲观锁和时间戳。"><a href="#并发控制的主要采用的技术手段：乐观锁、悲观锁和时间戳。" class="headerlink" title="并发控制的主要采用的技术手段：乐观锁、悲观锁和时间戳。"></a>并发控制的主要采用的技术手段：乐观锁、悲观锁和时间戳。</h2><h2 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类:"></a>锁的分类:</h2><p>从数据库系统角度分为三种：排他锁、共享锁、更新锁。<br>从程序员的角度分析: 乐观锁，悲观锁</p>
+<h2 id="悲观锁（Pessimistic-Lock）"><a href="#悲观锁（Pessimistic-Lock）" class="headerlink" title="悲观锁（Pessimistic Lock）"></a>悲观锁（Pessimistic Lock）</h2><p>顾名思义，很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人拿这个数据就会block（阻塞），直到它拿锁。<br>悲观锁（Pessimistic Lock）：正如其名，具有强烈的独占和排他特性。它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。悲观锁的实现，往往依靠数据库提供的锁机制（也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加锁机制，也无法保证外部系统不会修改数据）。</p>
+<p><em>传统的关系数据库里用到了很多这种锁机制，比如行锁、表锁、读锁、写锁等，都是在操作之前先上锁。</em></p>
+<h2 id="共享锁-Share-Lock"><a href="#共享锁-Share-Lock" class="headerlink" title="共享锁(Share Lock)"></a>共享锁(Share Lock)</h2><p>S锁，也叫读锁，用于所有的只读数据操作。共享锁是非独占的，允许多个并发事务读取其锁定的资源。<br>性质 </p>
+<ol>
+<li>多个事务可封锁同一个共享页； </li>
+<li>任何事务都不能修改该页； </li>
+<li>通常是该页被读取完毕，S锁立即被释放。</li>
+</ol>
+<p><code>例如:在SQL Server中，默认情况下，数据被读取后，立即释放共享锁。 
+例如，执行查询语句“SELECT * FROM my_table”时，首先锁定第一页，读取之后，释放对第一页的锁定，然后锁定第二页。这样，就允许在读操作过程中，修改未被锁定的第一页。 
+例如，语句“SELECT * FROM my_table HOLDLOCK”就要求在整个查询过程中，保持对表的锁定，直到查询完成才释放锁定。</code></p>
+<h2 id="排他锁（Exclusive-Lock）"><a href="#排他锁（Exclusive-Lock）" class="headerlink" title="排他锁（Exclusive Lock）"></a>排他锁（Exclusive Lock）</h2><p>X锁，也叫写锁，表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。（某个顾客把试衣间从里面反锁了，其他顾客想要使用这个试衣间，就只有等待锁从里面打开了。）<br>性质 </p>
+<ol>
+<li>仅允许一个事务封锁此页； </li>
+<li>其他任何事务必须等到X锁被释放才能对该页进行访问； </li>
+<li>X锁一直到事务结束才能被释放。<br><code>产生排他锁的sql语句 select * from ljd_user for update</code></li>
+</ol>
+<h2 id="更新锁-update-lock"><a href="#更新锁-update-lock" class="headerlink" title="更新锁(update lock)"></a>更新锁(update lock)</h2><p>U锁，在修改操作的初始化阶段用来锁定可能要被修改的资源，这样可以避免使用共享锁造成的死锁现象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">因为当使用共享锁时，修改数据的操作分为两步： </span><br><span class="line">1. 首先获得一个共享锁，读取数据， </span><br><span class="line">2. 然后将共享锁升级为排他锁，再执行修改操作。 </span><br><span class="line">这样如果有两个或多个事务同时对一个事务申请了共享锁，在修改数据时，这些事务都要将共享锁升级为排他锁。这时，这些事务都不会释放共享锁，而是一直等待对方释放，这样就造成了死锁。 </span><br><span class="line">如果一个数据在修改前直接申请更新锁，在数据修改时再升级为排他锁，就可以避免死锁。</span><br></pre></td></tr></table></figure>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><p>行锁的作用范围为行级别</p>
+<h2 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h2><p>表锁的作用范围为整张表<br>数据库能够确定那些行需要锁的情况下使用行锁，如果不知道会影响哪些行的时候就会使用表锁。</p>
+<p>比如，当我们执行一个sql 明确指定唯一id，where id = ?时，这里只会修改某一行的数据，数据库就会上行锁，如果没有指定具体的id，那么数据库就会给给这张表上表锁。</p>
+<h2 id="乐观锁（Optimistic-Lock）"><a href="#乐观锁（Optimistic-Lock）" class="headerlink" title="乐观锁（Optimistic Lock）"></a>乐观锁（Optimistic Lock）</h2><p>顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以，不会上锁。但是在更新的时候会判断一下在此期间别人有没有更新这个数据，可以使用版本号等机制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">乐观锁（ Optimistic Locking ）： 相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。 </span><br><span class="line">悲观锁大多数情况下依靠数据库的锁机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对长事务而言，这样的开销往往无法承受。而乐观锁机制在一定程度上解决了这个问题。 </span><br><span class="line">乐观锁，大多是基于数据版本（ Version ）记录机制实现。 </span><br><span class="line">数据版本：为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</span><br></pre></td></tr></table></figure>
+<h2 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h2><p>定义：指的是T1封锁了数据R，T2同时也请求封锁数据R，T3也请求封锁数据R，当T1释放了锁之后，T3会锁住R，T4也请求封锁R，则T2就会一直等待下去。<br>解决方法：采用“先来先服务”策略可以避免。</p>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>定义：就是我等你，你又等我，双方就会一直等待下去。比如：T1封锁了数据R1，正请求对R2封锁，而T2封住了R2,正请求封锁R1，这样就会导致死锁，死锁这种没有完全解决的方法，只能尽量预防。<br>预防方法： </p>
+<ol>
+<li>一次封锁法，指的是一次性把所需要的数据全部封锁住，但是这样会扩大了封锁的范围，降低系统的并发度； </li>
+<li>顺序封锁法，指的是事先对数据对象指定一个封锁顺序，要对数据进行封锁，只能按照规定的顺序来封锁，但是这个一般不大可能的。 系统判定死锁的方法：</li>
+</ol>
+<p>超时法：如果某个事物的等待时间超过指定时限，则判定为出现死锁；<br>等待图法：如果事务等待图中出现了回路，则判断出现了死锁。<br>对于解决死锁的方法，只能是撤销一个处理死锁代价最小的事务，释放此事务持有的所有锁，同时对撤销的事务所执行的数据修改操作必须加以恢复。</p>
+
       
     </div>
     
@@ -316,6 +352,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/锁/" rel="tag"># 锁</a>
+          
+            <a href="/tags/乐观锁/" rel="tag"># 乐观锁</a>
+          
+            <a href="/tags/悲观锁/" rel="tag"># 悲观锁</a>
+          
+        </div>
       
 
       
@@ -390,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -419,7 +474,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -449,6 +504,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。"><span class="nav-number">1.</span> <span class="nav-text">锁是网络数据库中的一个非常重要的概念，当多个用户同时对数据库并发操作时，会带来数据不一致的问题，所以，锁主要用于多用户环境下保证数据库完整性和一致性。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库锁出现的目的，或者说是想要解决什么问题？"><span class="nav-number">1.1.</span> <span class="nav-text">数据库锁出现的目的，或者说是想要解决什么问题？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制的主要采用的技术手段：乐观锁、悲观锁和时间戳。"><span class="nav-number">2.</span> <span class="nav-text">并发控制的主要采用的技术手段：乐观锁、悲观锁和时间戳。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的分类"><span class="nav-number">3.</span> <span class="nav-text">锁的分类:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#悲观锁（Pessimistic-Lock）"><span class="nav-number">4.</span> <span class="nav-text">悲观锁（Pessimistic Lock）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁-Share-Lock"><span class="nav-number">5.</span> <span class="nav-text">共享锁(Share Lock)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁（Exclusive-Lock）"><span class="nav-number">6.</span> <span class="nav-text">排他锁（Exclusive Lock）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新锁-update-lock"><span class="nav-number">7.</span> <span class="nav-text">更新锁(update lock)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行锁"><span class="nav-number">8.</span> <span class="nav-text">行锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表锁"><span class="nav-number">9.</span> <span class="nav-text">表锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乐观锁（Optimistic-Lock）"><span class="nav-number">10.</span> <span class="nav-text">乐观锁（Optimistic Lock）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#活锁"><span class="nav-number">11.</span> <span class="nav-text">活锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">12.</span> <span class="nav-text">死锁</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
